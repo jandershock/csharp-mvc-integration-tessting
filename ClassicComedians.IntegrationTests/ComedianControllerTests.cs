@@ -97,6 +97,80 @@ namespace ClassicComedians.IntegrationTests
                 td => td.TextContent.Contains(groupName));
         }
 
+        [Fact]
+        public async Task Post_EditWillUpdateComedian()
+        {
+            // Arrange
+            Comedian comedian = GetAllComedians().Last();
+            Group group = GetAllGroups().Single(g => g.Id == comedian.GroupId);
+
+            string url = $"/Comedian/Edit/{comedian.Id}";
+            HttpResponseMessage editResponse = await _client.GetAsync(url);
+            IHtmlDocument editDom = await HtmlHelpers.GetDocumentAsync(editResponse);
+
+            IHtmlInputElement firstNameInput = 
+                editDom.QuerySelector("#Comedian_FirstName") as IHtmlInputElement;
+            Assert.NotNull(firstNameInput);
+
+            IHtmlInputElement lastNameInput = 
+                editDom.QuerySelector("#Comedian_LastName") as IHtmlInputElement;
+            Assert.NotNull(lastNameInput);
+
+            IHtmlInputElement birthDateInput = 
+                editDom.QuerySelector("#Comedian_BirthDate") as IHtmlInputElement;
+            Assert.NotNull(birthDateInput);
+
+            IHtmlInputElement deathDateInput = 
+                editDom.QuerySelector("#Comedian_DeathDate") as IHtmlInputElement;
+            Assert.NotNull(deathDateInput);
+
+            IHtmlSelectElement groupIdSelect =
+                editDom.QuerySelector("#Comedian_GroupId") as IHtmlSelectElement;
+            Assert.NotNull(groupIdSelect);
+
+            string firstName = firstNameInput.Value;
+            string lastName = lastNameInput.Value;
+            DateTime birthDate = DateTime.Parse(birthDateInput.Value);
+            DateTime deathDate = DateTime.Parse(deathDateInput.Value);
+            int groupId = int.Parse(groupIdSelect.Value);
+
+            string newFirstName = firstName + Guid.NewGuid().ToString();
+            string newLastName = lastName + Guid.NewGuid().ToString();
+            string newBirthDate = birthDate.AddDays(1).ToString("s");
+            string newDeathDate = deathDate.AddDays(1).ToString("s");
+
+            Group newGroup = GetAllGroups().First(g => g.Id != groupId);
+            string newGroupId = newGroup.Id.ToString();
+            string newGroupName = newGroup.Name;
+
+ 
+            // Act
+            HttpResponseMessage response = await _client.SendAsync(
+                editDom,
+                new Dictionary<string, string> {
+                    { "Comedian_FirstName", newFirstName },
+                    { "Comedian_LastName", newLastName },
+                    { "Comedian_BirthDate", newBirthDate },
+                    { "Comedian_DeathDate", newDeathDate },
+                    { "Comedian_GroupId", newGroupId },
+                }
+            );
+
+            // Assert
+            IHtmlDocument indexDom = await HtmlHelpers.GetDocumentAsync(response);
+
+            Assert.Contains(
+                indexDom.QuerySelectorAll("td"),
+                td => td.TextContent.Contains(newFirstName));
+            Assert.Contains(
+                indexDom.QuerySelectorAll("td"),
+                td => td.TextContent.Contains(newLastName));
+            Assert.Contains(
+                indexDom.QuerySelectorAll("td"),
+                td => td.TextContent.Contains(newGroupName));
+        }
+
+
         private IEnumerable<Comedian> GetAllComedians()
         {
             return Database.GetAllComedians();

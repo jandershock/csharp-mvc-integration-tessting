@@ -1,4 +1,4 @@
-﻿@model ClassicComedians.Models.Comedian
+﻿@model ClassicComedians.Models.ViewModels.ComedianEditViewModel
 
 @{
     ViewData["Title"] = "Edit";
@@ -10,29 +10,34 @@
 <hr />
 <div class="row">
     <div class="col-md-4">
-        <form asp-action="Edit" asp-route-id="@Model.Id">
+        <form asp-action="Edit" asp-route-id="@Model.Comedian.Id">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
-                <label asp-for="FirstName" class="control-label"></label>
-                <input asp-for="FirstName" class="form-control" />
-                <span asp-validation-for="FirstName" class="text-danger"></span>
+                <label asp-for="Comedian.FirstName" class="control-label"></label>
+                <input asp-for="Comedian.FirstName" class="form-control" />
+                <span asp-validation-for="Comedian.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="LastName" class="control-label"></label>
-                <input asp-for="LastName" class="form-control" />
-                <span asp-validation-for="LastName" class="text-danger"></span>
+                <label asp-for="Comedian.LastName" class="control-label"></label>
+                <input asp-for="Comedian.LastName" class="form-control" />
+                <span asp-validation-for="Comedian.LastName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="BirthDate" class="control-label"></label>
-                <input asp-for="BirthDate" class="form-control" />
-                <span asp-validation-for="BirthDate" class="text-danger"></span>
+                <label asp-for="Comedian.BirthDate" class="control-label"></label>
+                <input asp-for="Comedian.BirthDate" class="form-control" />
+                <span asp-validation-for="Comedian.BirthDate" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DeathDate" class="control-label"></label>
-                <input asp-for="DeathDate" class="form-control" />
-                <span asp-validation-for="DeathDate" class="text-danger"></span>
+                <label asp-for="Comedian.DeathDate" class="control-label"></label>
+                <input asp-for="Comedian.DeathDate" class="form-control" />
+                <span asp-validation-for="Comedian.DeathDate" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Comedian.GroupId" class="control-label"></label>
+                <select asp-for="Comedian.GroupId" asp-items="@Model.GroupOptions" class="form-control" ></select>
+                <span asp-validation-for="Comedian.GroupId" class="text-danger"></span>
+            </div>
+             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-default" />
             </div>
         </form>

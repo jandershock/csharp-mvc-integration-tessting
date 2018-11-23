@@ -4,7 +4,7 @@ using System.Linq;
 
 namespace ClassicComedians.Models.ViewModels
 {
-    public class ComedianCreateViewModel
+    public class ComedianEditViewModel
     {
         public Comedian Comedian { get; set; }
         public IEnumerable<Group> AllGroups { get; set; }

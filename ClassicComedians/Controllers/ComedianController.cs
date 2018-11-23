@@ -61,13 +61,20 @@ namespace ClassicComedians.Controllers
             {
                 return NotFound();
             }
-            return View(comedian);
+
+            IEnumerable<Group> groups = Database.GetAllGroups();
+            ComedianEditViewModel viewModel = new ComedianEditViewModel
+            {
+                Comedian = comedian,
+                AllGroups = groups
+            };
+            return View(viewModel);
         }
 
         [HttpPost]
-        public IActionResult Edit(int id, Comedian comedian)
+        public IActionResult Edit(int id, ComedianEditViewModel viewModel)
         {
-            Database.UpdateComedian(comedian);
+            Database.UpdateComedian(id, viewModel.Comedian);
             return RedirectToAction(nameof(Index));
         }
 

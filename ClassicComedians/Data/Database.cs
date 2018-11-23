@@ -97,9 +97,9 @@ namespace ClassicComedians.Data
             _comedians.Add(comedian);
         }
 
-        public static void UpdateComedian(Comedian comedian)
+        public static void UpdateComedian(int id, Comedian comedian)
         {
-            var existing = GetComedianById(comedian.Id);
+            var existing = GetComedianById(id);
             existing.FirstName = comedian.FirstName;
             existing.LastName = comedian.LastName;
             existing.BirthDate = comedian.BirthDate;
