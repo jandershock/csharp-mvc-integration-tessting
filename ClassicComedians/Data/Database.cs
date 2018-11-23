@@ -7,7 +7,8 @@ namespace ClassicComedians.Data
 {
     /// <summary>
     ///  This class represents a Fake database.
-    ///  It holds data in memory, therefore the data will be reset each time the application is restarted.
+    ///  It holds data in memory, therefore the data will be reset each time 
+    ///   the application is restarted.
     ///  
     ///  In a real application data would be stored in a real database (e.g. Sql Server)
     /// </summary>
