@@ -44,9 +44,9 @@ namespace ClassicComedians.IntegrationTests
 
             // Act
             HttpResponseMessage response = await _client.GetAsync(url);
-            IHtmlDocument indexDom = await HtmlHelpers.GetDocumentAsync(response);
 
             // Assert
+            IHtmlDocument indexDom = await HtmlHelpers.GetDocumentAsync(response);
             string comedianListUrl = "/Comedian";
             int expectedComedianListUrlCount = 2;
 
