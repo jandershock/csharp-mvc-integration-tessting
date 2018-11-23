@@ -3,7 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.28010.2050
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicComedians", "ClassicComedians\ClassicComedians.csproj", "{E664D3F6-7F92-48AD-B181-3F264ADB449D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ClassicComedians", "ClassicComedians\ClassicComedians.csproj", "{E664D3F6-7F92-48AD-B181-3F264ADB449D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClassicComedians.IntegrationTests", "ClassicComedians.IntegrationTests\ClassicComedians.IntegrationTests.csproj", "{48DD27CC-4553-426F-9DCD-A300233D673B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{E664D3F6-7F92-48AD-B181-3F264ADB449D}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E664D3F6-7F92-48AD-B181-3F264ADB449D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E664D3F6-7F92-48AD-B181-3F264ADB449D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{48DD27CC-4553-426F-9DCD-A300233D673B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{48DD27CC-4553-426F-9DCD-A300233D673B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{48DD27CC-4553-426F-9DCD-A300233D673B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{48DD27CC-4553-426F-9DCD-A300233D673B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
